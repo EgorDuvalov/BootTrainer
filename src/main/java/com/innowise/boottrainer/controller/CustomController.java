@@ -19,7 +19,24 @@ public class CustomController {
     @GetMapping
     public String welcomePage(@RequestParam(name = "name", defaultValue = "Guest") String name, Model model) {
         model.addAttribute("name", name);
-        return "welcome/welcome";
+        return "welcome";
+    }
+
+    @GetMapping("/add")
+    public String addUser() {
+        return "/add";
+    }
+
+    @PostMapping("/add")
+    public String addUser(@RequestParam String login,
+                          @RequestParam String pass,
+                          @RequestParam String email) {
+        User user = new User();
+        user.setLogin(login);
+        user.setPass(pass);
+        user.setEmail(email);
+        userRepository.save(user);
+        return "add";
     }
 
     @PostMapping("/add")
