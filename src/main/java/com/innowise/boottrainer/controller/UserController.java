@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/trainer")
-public class CustomController {
+public class UserController {
     @Autowired
     private UserRepository userRepository;
 
@@ -39,15 +39,9 @@ public class CustomController {
         return "add";
     }
 
-    @PostMapping("/add")
-    public String addUser(@RequestParam String login,
-                          @RequestParam String pass,
-                          @RequestParam String email) {
-        User user = new User();
-        user.setLogin(login);
-        user.setPass(pass);
-        user.setEmail(email);
-        userRepository.save(user);
-        return "add";
+    @GetMapping("/show")
+    public String showUsers(Model model) {
+        model.addAttribute("users", userRepository.findAll());
+        return "show";
     }
 }
