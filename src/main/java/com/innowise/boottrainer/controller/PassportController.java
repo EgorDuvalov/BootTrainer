@@ -16,6 +16,27 @@ public class PassportController {
     @Autowired
     private UserRepository userRepository;
 
+    @GetMapping("/registration")
+    public String addUser() {
+        return "passport/registration";
+    }
+
+    @PostMapping("/registration")
+    public String addUser(@RequestParam String login,
+                          @RequestParam String pass,
+                          @RequestParam String email,
+                          Model model
+    ) {
+        if (userRepository.findByLogin(login) != null) {
+            model.addAttribute("message", "User already exists");
+            return "passport/registration";
+        }
+        User user = new User(login, pass, email);
+        userRepository.save(user);
+        return "redirect:/passport/login";
+    }
+
+
 //    @GetMapping("/login")
 //    public String addUser() {
 //        return "passport/login";
