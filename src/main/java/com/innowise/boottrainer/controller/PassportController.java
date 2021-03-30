@@ -27,7 +27,7 @@ public class PassportController {
                           @RequestParam String email,
                           Model model
     ) {
-        if (userRepository.findByLogin(login) != null) {
+        if (userRepository.findByUsername(login) != null) {
             model.addAttribute("message", "User already exists");
             return "passport/registration";
         }

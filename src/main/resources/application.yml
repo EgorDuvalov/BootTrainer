@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/boottrainer
+    username: Duvalov
+    password: N3pr1nc1p14ln0
+
+  mustache:
+    expose-request-attributes: true

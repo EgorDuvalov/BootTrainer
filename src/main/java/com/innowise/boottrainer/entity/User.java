@@ -1,19 +1,19 @@
 package com.innowise.boottrainer.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-import javax.persistence.*;
-import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-@Getter
-@Setter
+@Data
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String login;
+    private String username;
     private String pass;
     private String email;
 
@@ -25,8 +25,8 @@ public class User {
     public User() {
     }
 
-    public User(String login, String pass, String email) {
-        this.login = login;
+    public User(String username, String pass, String email) {
+        this.username = username;
         this.pass = pass;
         this.email = email;
     }
